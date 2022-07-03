@@ -75,4 +75,21 @@ M.plugins = {
     },
   },
 }
+M.mappings = {
+  tabufline = {
+    n = {
+      -- cycle through buffers
+      ["L"] = { "<cmd> Tbufnext <CR>", "  goto next buffer" },
+      ["H"] = { "<cmd> Tbufprev <CR> ", "  goto prev buffer" },
+
+      -- close buffer + hide terminal buffer
+      ["<leader>c"] = {
+        function()
+          require("core.utils").close_buffer()
+        end,
+        "   close buffer",
+      },
+    },
+  }
+}
 return M
