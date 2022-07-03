@@ -56,13 +56,24 @@ M.plugins = {
     ["jose-elias-alvarez/null-ls.nvim"] = {
       after = "nvim-lspconfig",
       config = function()
+        local null_ls = require "null-ls"
+        local b = null_ls.builtins
         require("null-ls").setup {
           debug = true,
           sources = {
-            require("null-ls").builtins.formatting.dart_format,
-            require("null-ls").builtins.formatting.stylua,
-            require("null-ls").builtins.diagnostics.eslint,
-            require("null-ls").builtins.completion.spell,
+            -- Flutter/Dart
+            b.formatting.dart_format.with { filetypes = { "dart" } },
+            -- front
+            b.formatting.prettierd.with { filetypes = { "html", "markdown", "css" } },
+            b.formatting.deno_fmt.with { filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" } },
+
+            -- Lua
+            b.formatting.stylua,
+            b.diagnostics.luacheck.with { extra_args = { "--global vim" } },
+
+            -- Shell
+            b.formatting.shfmt,
+            b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
           },
           -- format on save
           on_attach = function()
