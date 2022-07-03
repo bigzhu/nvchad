@@ -20,8 +20,8 @@ return {
         -- format on save
         on_attach = function()
           -- for 0.8.0 nvim
-          --vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ bufnr = bufnr })"
-          vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
+          vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ bufnr = bufnr })"
+          --vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
         end,
       }
     end,
@@ -29,3 +29,4 @@ return {
 }
 
 -- load it after nvim-lspconfig cuz we lazy loaded lspconfig
+-- [LSP] Accessing client.resolved_capabilities is deprecated, update your plugins or configuration to access client.server_capabilities instead.The new key/value pairs in server_capabilities directly match
